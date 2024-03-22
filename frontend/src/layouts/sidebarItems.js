@@ -3,7 +3,8 @@ import { Link, NavLink } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 
 
-export const baseUrl = 'http://localhost:8000';
+export const baseUrl = 'https://mern-school-app-f8n4.onrender.com';
+// export const baseUrl = 'http://localhost:8000';
 // export const baseUrl = 'https://mern-school-app-wvan.onrender.com';
 export const getSessionStorageRole = ()=>{
   const schoolData = sessionStorage.getItem('schoolData');
