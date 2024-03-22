@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getSessionStorageRole } from '../layouts/sidebarItems';
+import { baseUrl, getSessionStorageRole } from '../layouts/sidebarItems';
 
 const Employee = () => {
   const [employee,setEmployee] = useState([]);
@@ -7,7 +7,7 @@ const Employee = () => {
   console.log('token',token);
   useEffect(()=>{
     const getEmployee = async ()=>{
-      let response = await fetch(`http://localhost:8000/employees/getEmployeeDetails/email/${token?.email}`);
+      let response = await fetch(baseUrl+`/employees/getEmployeeDetails/email/${token?.email}`);
       if(!response.ok){
         console.log('employees not responded properly');
         return

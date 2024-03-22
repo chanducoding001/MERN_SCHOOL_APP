@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "./principal.css";
 import { useNavigate, useParams } from "react-router-dom";
-import { getToken } from "../layouts/sidebarItems";
+import { baseUrl, getToken } from "../layouts/sidebarItems";
 
 
 const EditEmployee = () => {
@@ -15,7 +15,7 @@ const EditEmployee = () => {
   useEffect(()=>{
     let isMounted = true;
     async function getParticularEmployee(id){
-        const response = await fetch(`http://localhost:8000/employees/getEmployee/${id}`,{
+        const response = await fetch(baseUrl+`/employees/getEmployee/${id}`,{
           method:'GET',
           headers:{
               'Content-Type':'application/json',
@@ -99,7 +99,7 @@ const EditEmployee = () => {
   const uploadImage = async (data)=>{
     const formData = new FormData();
     formData.append("file", data);
-    const imgResponse = await fetch("http://localhost:8000/files", {
+    const imgResponse = await fetch(baseUrl+"/files", {
       method: "POST",
       body: formData,
     });
@@ -112,7 +112,7 @@ const EditEmployee = () => {
     data.forEach((file)=>{
         formData.append('files',file)
     });
-    const docResponse = await fetch('http://localhost:8000/files/multiple',{
+    const docResponse = await fetch(baseUrl+'/files/multiple',{
         method:'POST',
         body:formData
     });
@@ -131,7 +131,7 @@ const EditEmployee = () => {
     
     try {
       const response = await fetch(
-        `http://localhost:8000/employees/putEmployee/${id}`,
+        baseUrl+`/employees/putEmployee/${id}`,
         {
           method:'PUT',
           headers:{

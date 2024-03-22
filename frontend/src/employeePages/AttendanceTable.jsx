@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Checkbox } from '@mui/material';
-import { getToken } from '../layouts/sidebarItems';
+import { baseUrl, getToken } from '../layouts/sidebarItems';
 
 const AttendanceTable = () => {
   const [attendance, setAttendance] = useState([]);
@@ -8,7 +8,7 @@ const AttendanceTable = () => {
   useEffect(() => {
     const getStudents = async () => {
       try {
-        const response = await fetch('http://localhost:8000/students/allStudents',{
+        const response = await fetch(baseUrl+'/students/allStudents',{
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -54,7 +54,7 @@ const AttendanceTable = () => {
       return {studentId: _id,date,status: present ? 'present' : 'absent'}
     });
 
-    const response = await fetch('http://localhost:8000/attendance/addAttendance', {
+    const response = await fetch(baseUrl+'/attendance/addAttendance', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

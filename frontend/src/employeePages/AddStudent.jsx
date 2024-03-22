@@ -2,7 +2,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React from 'react'
 import * as Yup from 'yup';
 import { calculateAge } from '../principalPages/principalRough';
-import { getToken } from '../layouts/sidebarItems';
+import { baseUrl, getToken } from '../layouts/sidebarItems';
 
 const AddStudent = () => {
     const initialValues = {
@@ -35,7 +35,7 @@ const AddStudent = () => {
     const uploadImage = async (data)=>{
         const formData = new FormData();
         formData.append("file", data);
-        const imgResponse = await fetch("http://localhost:8000/files", {
+        const imgResponse = await fetch(baseUrl+"/files", {
           method: "POST",
           body: formData,
         });
@@ -52,7 +52,7 @@ const AddStudent = () => {
         }
         values.profilePicture = imgData.data["_id"];
         try{
-            const response = await fetch('http://localhost:8000/students/addStudent',{
+            const response = await fetch(baseUrl+'/students/addStudent',{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json',

@@ -3,7 +3,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import * as Yup from 'yup';
-import { getToken } from '../layouts/sidebarItems';
+import { baseUrl, getToken } from '../layouts/sidebarItems';
 
 const AddParent = () => {
     const [students,setStudents] = useState([]);
@@ -11,7 +11,7 @@ const AddParent = () => {
     useEffect(()=>{
         const token = getToken()
         const getStudents = async ()=>{
-            const response = await fetch('http://localhost:8000/students/allStudents',{
+            const response = await fetch(baseUrl+'/students/allStudents',{
                 method:'GET',
                 headers:{
                     'Content-Type':'application/json',
@@ -57,7 +57,7 @@ const AddParent = () => {
     const uploadImage = async (data)=>{
         const formData = new FormData();
         formData.append("file", data);
-        const imgResponse = await fetch("http://localhost:8000/files", {
+        const imgResponse = await fetch(baseUrl+"/files", {
           method: "POST",
           body: formData,
         });
@@ -71,7 +71,7 @@ const AddParent = () => {
         const imgData = await uploadImage(values.profilePicture);
         if(imgData === false) return;
         values.profilePicture = imgData.data["_id"];
-        const response = await fetch('http://localhost:8000/parents/addParent',{
+        const response = await fetch(baseUrl+'/parents/addParent',{
             method:'POST',
             headers:{
                 'Content-Type':'application/json',

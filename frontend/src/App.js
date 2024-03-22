@@ -18,8 +18,7 @@ import AddParent from './employeePages/AddParent';
 import AttendanceTable from './employeePages/AttendanceTable';
 import Childrens from './parent/Childrens';
 const App = () => {
-  // const schoolData = JSON.parse(sessionStorage.getItem('schoolData'));
-  // const role = schoolData?.role;
+  
   return (
     <>
     <BrowserRouter>

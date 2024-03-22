@@ -3,13 +3,9 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "./principal.css";
 import { calculateAge } from "./principalRough";
-import { getToken } from "../layouts/sidebarItems";
+import { baseUrl, getToken } from "../layouts/sidebarItems";
 const AddEmployee = () => {
-  // const documentsRef = useRef(null);
-  // const [document, setDocument] = useState("");
-  // const [documentError, setDocumentError] = useState("");
-  // const [backEndImg, setBackendImg] = useState("");
-  // const [token,setToken] = useState(sessionStorage.getItem('schoolData'));
+  
   const initialValues = {
     dateOfJoin: "",
     username: "",
@@ -88,7 +84,7 @@ const AddEmployee = () => {
   const uploadImage = async (data)=>{
     const formData = new FormData();
     formData.append("file", data);
-    const imgResponse = await fetch("http://localhost:8000/files", {
+    const imgResponse = await fetch(baseUrl+"/files", {
       method: "POST",
       body: formData,
     });
@@ -102,7 +98,7 @@ const AddEmployee = () => {
     data.forEach((file)=>{
         formData.append('files',file)
     });
-    const docResponse = await fetch('http://localhost:8000/files/multiple',{
+    const docResponse = await fetch(baseUrl+'/files/multiple',{
         method:'POST',
         body:formData
     });
@@ -131,7 +127,7 @@ const AddEmployee = () => {
     console.log("values", clone);
     try {
       const response = await fetch(
-        "http://localhost:8000/employees/addEmployee",
+        baseUrl+"/employees/addEmployee",
         {
           method: "POST",
           headers: {
@@ -143,8 +139,6 @@ const AddEmployee = () => {
       );
       if (response.ok) {
         const data = await response.json();
-        // setBackendImg(data.data.profilePicture);
-        console.log(data);
         resetForm();
       }
     } catch (err) {
@@ -153,22 +147,7 @@ const AddEmployee = () => {
   };
 
   
-  // const uploadDocument = async (e) => {
-  //   const formData = new FormData();
-  //   formData.append("file", e.target.files[0]);
-  //   const response = await fetch("http://localhost:8000/files", {
-  //     method: "POST",
-  //     body: formData,
-  //   });
-  //   const data = await response.json();
-  //   console.log("image data", data);
-  // };
-
-  // const handleChange = (e) => {
-  //   const formData = new FormData();
-  //   formData.append("file", e.target.files[0]);
-  //   setDocument(formData);
-  // };
+  
   return (
     <>
       <div>Add employee</div>

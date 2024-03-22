@@ -20,7 +20,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from 'react-router-dom';
-
+import {baseUrl} from '../layouts/sidebarItems'; 
 const style = {
   position: 'absolute',
   top: '50%',
@@ -93,7 +93,7 @@ const ViewEmployeeTable = ({ rows, columns }) => {
   };
 
   const displayImage = async (id) => {
-    const response = await fetch(`http://localhost:8000/files/${id}`);
+    const response = await fetch(baseUrl+`/files/${id}`);
     if (!response.ok) {
       console.log('response not ok');
     } else {
@@ -105,7 +105,7 @@ const ViewEmployeeTable = ({ rows, columns }) => {
 
   const displayDocuments = async (docs) => {
     const docsStr = docs.join('id');
-    const response = await fetch(`http://localhost:8000/files/multiple/${docsStr}`);
+    const response = await fetch(baseUrl+`/files/multiple/${docsStr}`);
     if (!response.ok) return;
     const data = await response.json();
     setDocsData(data.data);
@@ -118,7 +118,7 @@ const ViewEmployeeTable = ({ rows, columns }) => {
   }
   const deleteEmployeeById = async (id)=>{
     try{
-      const response = await fetch(`http://localhost:8000/employees/deleteEmployee/${id}`,{method:'DELETE'});
+      const response = await fetch(baseUrl+`/employees/deleteEmployee/${id}`,{method:'DELETE'});
       if(!response.ok){
         console.log('delete unsuccessful');
         return;

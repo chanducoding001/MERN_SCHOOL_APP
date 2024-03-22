@@ -3,7 +3,7 @@ import {Formik,Form,Field,ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { convertStringRole } from '../layouts/sidebarItems';
-
+import { baseUrl } from '../layouts/sidebarItems';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -21,7 +21,7 @@ const Login = () => {
         values.role = convertStringRole(values.role)
         console.log(values);
         try{
-            const response = await fetch("http://localhost:8000/api/auth/login",{
+            const response = await fetch(baseUrl+"/api/auth/login",{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json'

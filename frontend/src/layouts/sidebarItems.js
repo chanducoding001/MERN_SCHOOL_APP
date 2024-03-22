@@ -2,6 +2,8 @@ import {DesktopOutlined,FileOutlined,PieChartOutlined,TeamOutlined,UserOutlined}
 import { Link, NavLink } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 
+
+export const baseUrl = 'http://localhost:8000';
 export const getSessionStorageRole = ()=>{
   const schoolData = sessionStorage.getItem('schoolData');
   if(!schoolData)return null;
@@ -66,21 +68,3 @@ export const roles = {
   parent:3,
   principal:1
 }
-// export const items = [
-// getItem(<NavLink className={({isActive})=>{return isActive?'active-link':'inactive-link'}} to='/'>Home</NavLink>,'1',<PieChartOutlined />),
-// getItem(<NavLink className={({isActive})=>{return isActive?'active-link':'inactive-link'}} to='/principal'>Principal</NavLink>,'2',<PieChartOutlined />),
-// getItem(<NavLink className={({isActive})=>{return isActive?'active-link':'inactive-link'}} to='/employee'>Employee</NavLink>,'3',<PieChartOutlined />),
-// getItem(<NavLink className={({isActive})=>{return isActive?'active-link':'inactive-link'}} to='/parent'>Parent</NavLink>,'4',<PieChartOutlined />),
-// ]
-
-// const items = [
-//   getItem('Option 1', '1', <PieChartOutlined />),
-//   getItem('Option 2', '2', <DesktopOutlined />),
-//   getItem('User', 'sub1', <UserOutlined />, [
-//     getItem('Tom', '3'),
-//     getItem('Bill', '4'),
-//     getItem('Alex', '5'),
-//   ]),
-//   getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-//   getItem('Files', '9', <FileOutlined />),
-// ];

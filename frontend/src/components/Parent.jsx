@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { getSessionStorageRole, getToken } from '../layouts/sidebarItems';
+import { baseUrl, getSessionStorageRole, getToken } from '../layouts/sidebarItems';
 import { useDispatch, useSelector } from 'react-redux';
 import { getParentData, addParentData } from '../app/parentSlicer';
 import Card from '@mui/material/Card';
@@ -17,7 +17,7 @@ const Parent = () => {
   useEffect(() => {
     const getParentData = async () => {
       try {
-        const response = await fetch(`http://localhost:8000/parents/${email}`,{
+        const response = await fetch(baseUrl+`/parents/${email}`,{
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -68,116 +68,3 @@ const Parent = () => {
 };
 
 export default Parent;
-
-
-
-
-
-
-
-
-
-
-// import React, { useEffect, useState } from 'react'
-// import { getSessionStorageRole } from '../layouts/sidebarItems';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { getParentData,addParentData } from '../app/parentSlicer';
-// import '../parent/children.css';
-// import Card from '@mui/material/Card';
-// import CardContent from '@mui/material/CardContent';
-// import CardMedia from '@mui/material/CardMedia';
-// import Typography from '@mui/material/Typography';
-// import { CardActionArea } from '@mui/material';
-
-// const Parent = () => {
-
-//   const dispatch = useDispatch();
-//   const parentInfo = useSelector(getParentData);
-//     const tokenData = getSessionStorageRole();
-//     const email = tokenData?.email;
-//     useEffect(()=>{
-//         const getParentData = async ()=>{
-//             const response = await fetch(`http://localhost:8000/parents/${email}`);
-//             if(!response.ok){
-//                 console.log('parent api has not called');
-//                 return
-//             }
-//             const data = await response.json();
-//             dispatch(addParentData(data?.data))
-//         }
-//         getParentData();
-//     },[])
-//     console.log('parent info',parentInfo);
-//   return (
-//     <>
-//     <h2>Parent data</h2>
-//     <Card>
-//        <div className='wrapper'>
-//        <div className='wrapper-one'>
-//        <p>Name:<span>{parentInfo?.name}</span></p>
-//        <p>Email:<span>{parentInfo?.email}</span></p>
-//        <p>Mobile:<span>{parentInfo?.mobile}</span></p>
-//        <p>Current Address:<span>{parentInfo?.currentAddress}</span></p>
-//        </div>
-//        <div className='wrapper-two'>
-//          <img className='profileImg'/>
-//        </div>
-//        </div>
-      
-//     </Card>
-//     </>
-//   )
-// }
-
-// export default Parent;
-
-
-
-
-// import React, { useEffect, useState } from 'react'
-// import { getSessionStorageRole } from '../layouts/sidebarItems';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { getParentData,addParentData } from '../app/parentSlicer';
-// import '../parent/children.css';
-// const Parent = () => {
-
-//   const dispatch = useDispatch();
-//   const parentInfo = useSelector(getParentData);
-//     const tokenData = getSessionStorageRole();
-//     const email = tokenData?.email;
-//     useEffect(()=>{
-//         const getParentData = async ()=>{
-//             const response = await fetch(`http://localhost:8000/parents/${email}`);
-//             if(!response.ok){
-//                 console.log('parent api has not called');
-//                 return
-//             }
-//             const data = await response.json();
-//             dispatch(addParentData(data?.data))
-//         }
-//         getParentData();
-//     },[])
-//     console.log('parent info',parentInfo);
-//   return (
-//     <>
-//     <h2>Parent data</h2>
-//     <div className='wrapper'>
-//       <div className='wrapper-one'>
-//       <p>Name:<span>{parentInfo?.name}</span></p>
-//       <p>Email:<span>{parentInfo?.email}</span></p>
-//       <p>Mobile:<span>{parentInfo?.mobile}</span></p>
-//       <p>Current Address:<span>{parentInfo?.currentAddress}</span></p>
-//       </div>
-//       <div className='wrapper-two'>
-//         <img className='profileImg'/>
-//       </div>
-//       </div>
-//     </>
-//   )
-// }
-
-// export default Parent;
-
-
-
-
